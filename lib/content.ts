@@ -201,10 +201,8 @@ const en: Dictionary = {
         body: 'From diagnosis to full implementation — with long-term support to management and owners where required, ensuring sustainability, control and measurable results.',
       },
     ],
-    teamHeading: 'Key team members',
-    team: [
-      { name: 'Lela Arsić', role: 'Senior Advisor' },
-      { name: 'Jelena Pantović', role: 'Senior Advisor' },
+    [
+      
     ],
     teamPhoto: {
       file: 'office-team',
@@ -406,10 +404,9 @@ const sr: Dictionary = {
         body: 'Od dijagnoze do pune implementacije — uz dugoročnu podršku upravi i vlasnicima kada je potrebna, kako bi se obezbedila održivost, kontrola i merljiv rezultat.',
       },
     ],
-    teamHeading: 'Ključni članovi tima',
-    team: [
-      { name: 'Lela Arsić', role: 'Senior savetnik' },
-      { name: 'Jelena Pantović', role: 'Senior savetnik' },
+   
+    [
+      
     ],
     teamPhoto: {
       file: 'office-team',
