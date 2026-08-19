@@ -202,8 +202,6 @@ const en: Dictionary = {
       },
     ],
     [
-      
-    ],
     teamPhoto: {
       file: 'office-team',
       caption: 'The team at work',
@@ -403,10 +401,6 @@ const sr: Dictionary = {
         title: 'Kontinuitet u primeni',
         body: 'Od dijagnoze do pune implementacije — uz dugoročnu podršku upravi i vlasnicima kada je potrebna, kako bi se obezbedila održivost, kontrola i merljiv rezultat.',
       },
-    ],
-   
-    [
-      
     ],
     teamPhoto: {
       file: 'office-team',
