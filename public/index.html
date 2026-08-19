@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MaLa Luminova Partners</title>
+    <link rel="canonical" href="https://luminovapartners.com/en/" />
+    <!--
+      There is no server on GitHub Pages, so the old next.config redirect from
+      "/" to "/en" cannot run. This file is the site root instead: it picks a
+      locale from the browser and forwards. The meta refresh is the fallback
+      for anything without JavaScript, including crawlers.
+    -->
+    <meta http-equiv="refresh" content="0; url=/en/" />
+    <script>
+      (function () {
+        var sr = (navigator.languages || [navigator.language || 'en']).some(function (l) {
+          return /^(sr|bs|hr|sh)\b/i.test(l);
+        });
+        location.replace(sr ? '/sr/' : '/en/');
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to <a href="/en/">luminovapartners.com/en</a>&hellip;</p>
+  </body>
+</html>

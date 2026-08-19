@@ -1,0 +1,1684 @@
+/* ============================================================
+   MaLa Luminova Partners — "The Belgrade Banking Hall"
+   Tokens per DESIGN.md. Limestone ground, ink-navy lettering,
+   bronze drawn as lines. Flat relief; zero radius; one gesture.
+   ============================================================ */
+
+:root {
+  --limestone: #fbfaf7;
+  --stone: #f3efe5;
+  --stone-inset: #eae4d4;
+  --ink: #10203f;
+  --slate: #4a505e;
+  --bronze: #6e5a34;
+  --brass: #a98b4f;
+  --plinth: #0a1730;
+  --hairline: #ded7c6;
+
+  --container: 1200px;
+  --gutter: clamp(20px, 4vw, 40px);
+  --section-y: clamp(72px, 11vw, 152px);
+
+  --label-track: 0.12em;
+  --inscription-track: 0.1em;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--limestone);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--limestone);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- accessibility ---------- */
+
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: -100px;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: var(--ink);
+  color: var(--limestone);
+  padding: 12px 24px;
+  font-size: 0.8125rem;
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: top 0.2s var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  top: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--bronze);
+  outline-offset: 2px;
+}
+
+/* ---------- primitives ---------- */
+
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.inscription {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--inscription-track);
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  color: var(--bronze);
+}
+
+.kicker::before,
+.kicker::after {
+  content: '';
+  height: 1px;
+  width: 40px;
+  background: var(--bronze);
+  flex: none;
+}
+
+.kicker--start::before {
+  display: none;
+}
+
+.kicker--center {
+  justify-content: center;
+}
+
+.lede {
+  color: var(--slate);
+  max-width: 62ch;
+}
+
+/* Cornice: full-width section divider */
+.cornice {
+  border: 0;
+  height: 1px;
+  background: var(--hairline);
+  position: relative;
+  overflow: visible;
+}
+
+.cornice::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  width: 7px;
+  height: 7px;
+  transform: translateX(-50%) rotate(45deg);
+  background: var(--limestone);
+  border: 1px solid var(--bronze);
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0;
+  transition:
+    background-color 0.2s var(--ease-out),
+    color 0.2s var(--ease-out),
+    border-color 0.2s var(--ease-out);
+}
+
+.btn-plaque {
+  position: relative;
+  background: var(--ink);
+  color: var(--limestone);
+  border: 1px solid var(--ink);
+  padding: 18px 42px;
+}
+
+.btn-plaque::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(251, 250, 247, 0.35);
+  pointer-events: none;
+  transition: border-color 0.2s var(--ease-out);
+}
+
+.btn-plaque:hover {
+  background: #1a2c55;
+}
+
+.btn-plaque:hover::after {
+  border-color: var(--brass);
+}
+
+.btn-ghost {
+  color: var(--ink);
+  padding: 18px 8px;
+  border-bottom: 1px solid var(--bronze);
+}
+
+.btn-ghost .arrow {
+  transition: transform 0.2s var(--ease-out);
+}
+
+.btn-ghost:hover {
+  color: var(--bronze);
+}
+
+.btn-ghost:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ---------- header ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--limestone);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 76px;
+}
+
+.site-header__logo {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.site-header__logo img {
+  height: 44px;
+  width: auto;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.site-nav__link {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 0.2s var(--ease-out),
+    border-color 0.2s var(--ease-out);
+}
+
+.site-nav__link:hover {
+  color: var(--bronze);
+  border-bottom-color: var(--bronze);
+}
+
+/* ---------- services dropdown: a plaque lowered from the header ---------- */
+
+.nav-drop {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+.nav-drop__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-drop__caret {
+  transition: transform 0.2s var(--ease-out);
+}
+
+.nav-drop__caret.is-open {
+  transform: rotate(180deg);
+}
+
+.nav-drop__panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 360px;
+  background: var(--limestone);
+  border: 1px solid var(--bronze);
+  padding: 14px 0;
+  z-index: 60;
+  animation: nav-drop-in 0.18s var(--ease-out);
+}
+
+@keyframes nav-drop-in {
+  from {
+    opacity: 0;
+    translate: 0 4px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-drop__panel {
+    animation: none;
+  }
+}
+
+.nav-drop__item {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 12px 24px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  transition: background-color 0.15s var(--ease-out);
+}
+
+.nav-drop__item:hover {
+  background: var(--stone);
+}
+
+.nav-drop__numeral {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  color: var(--bronze);
+  flex: none;
+  min-width: 24px;
+}
+
+.nav-drop__all {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 24px 0;
+  padding: 12px 0 0;
+  border-top: 1px solid var(--hairline);
+  text-decoration: none;
+  color: var(--bronze);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+}
+
+.nav-drop__all:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 860px) {
+  .nav-drop {
+    flex-direction: column;
+    align-items: stretch;
+    align-self: auto;
+  }
+
+  .nav-drop__trigger {
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--hairline);
+    text-align: left;
+  }
+
+  .nav-drop__panel {
+    position: static;
+    transform: none;
+    min-width: 0;
+    border: none;
+    border-left: 1px solid var(--bronze);
+    margin: 8px 0 8px 2px;
+    padding: 0;
+    animation: none;
+  }
+
+  .nav-drop__item {
+    padding: 12px 18px;
+  }
+
+  .nav-drop__all {
+    margin: 8px 18px 0;
+  }
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 24px;
+  border-left: 1px solid var(--bronze);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+}
+
+.lang-switch a {
+  text-decoration: none;
+  color: var(--slate);
+  transition: color 0.2s var(--ease-out);
+}
+
+.lang-switch a:hover {
+  color: var(--bronze);
+}
+
+.lang-switch [aria-current='true'] {
+  color: var(--ink);
+  border-bottom: 1px solid var(--bronze);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--hairline);
+  padding: 10px 12px;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+@media (max-width: 860px) {
+  .site-nav {
+    position: fixed;
+    inset: 76px 0 auto 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--limestone);
+    border-bottom: 1px solid var(--bronze);
+    padding: 8px var(--gutter) 24px;
+    display: none;
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .site-nav__link {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .lang-switch {
+    border-left: 0;
+    padding-left: 0;
+    padding-top: 20px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+}
+
+/* ---------- hero portal ---------- */
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding-top: clamp(64px, 9vw, 120px);
+  overflow: hidden;
+}
+
+.hero__keystone {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+  color: var(--bronze);
+}
+
+.hero .kicker {
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.hero__title {
+  font-size: clamp(1.75rem, 5.2vw, 3.9rem);
+  margin-inline: auto;
+}
+
+.hero__rule {
+  width: 220px;
+  margin: 36px auto 28px;
+}
+
+.hero__lede {
+  margin-inline: auto;
+  margin-bottom: 20px;
+  max-width: 58ch;
+  font-size: 1.125rem;
+}
+
+.hero__tagline {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 0.9375rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 44px;
+}
+
+.hero__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(48px, 7vw, 84px);
+}
+
+.hero__colonnade {
+  color: var(--ink);
+  opacity: 0.85;
+  margin-inline: auto;
+  max-width: 1080px;
+  width: 100%;
+}
+
+/* ---------- sections ---------- */
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section--stone {
+  position: relative;
+  background: var(--stone);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+/* Cornice with dentil course along the top of every stone band */
+.section--stone::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  height: 11px;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--hairline), var(--hairline)),
+    repeating-linear-gradient(90deg, var(--hairline) 0 2px, transparent 2px 14px);
+  background-position:
+    0 0,
+    50% 5px;
+  background-size:
+    100% 1px,
+    100% 6px;
+  background-repeat: no-repeat;
+}
+
+.section__head {
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.section__head .kicker {
+  margin-bottom: 20px;
+}
+
+.section__title {
+  font-size: clamp(1.5rem, 2.8vw, 2.125rem);
+  margin-bottom: 16px;
+}
+
+/* ---------- service plaques ---------- */
+
+.plaque-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(20px, 3vw, 32px);
+}
+
+@media (max-width: 760px) {
+  .plaque-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.plaque {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: var(--limestone);
+  border: 1px solid var(--bronze);
+  padding: clamp(28px, 4vw, 44px);
+  text-decoration: none;
+  color: var(--ink);
+  transition: background-color 0.25s var(--ease-out);
+}
+
+.plaque::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--hairline);
+  pointer-events: none;
+  transition: border-color 0.25s var(--ease-out);
+}
+
+/* Corner fittings: small drawn bronze brackets on every framed plate */
+.plaque::before,
+.protocol::before,
+.exhibit__frame::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    linear-gradient(var(--bronze), var(--bronze)),
+    linear-gradient(var(--bronze), var(--bronze)),
+    linear-gradient(var(--bronze), var(--bronze)),
+    linear-gradient(var(--bronze), var(--bronze)),
+    linear-gradient(var(--bronze), var(--bronze)),
+    linear-gradient(var(--bronze), var(--bronze)),
+    linear-gradient(var(--bronze), var(--bronze)),
+    linear-gradient(var(--bronze), var(--bronze));
+  background-position:
+    left 0 top 0,
+    left 0 top 0,
+    right 0 top 0,
+    right 0 top 0,
+    left 0 bottom 0,
+    left 0 bottom 0,
+    right 0 bottom 0,
+    right 0 bottom 0;
+  background-size:
+    10px 1px,
+    1px 10px,
+    10px 1px,
+    1px 10px,
+    10px 1px,
+    1px 10px,
+    10px 1px,
+    1px 10px;
+  background-repeat: no-repeat;
+}
+
+.plaque:hover {
+  background: var(--stone);
+}
+
+.plaque:hover::after {
+  border-color: var(--brass);
+}
+
+.plaque__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.plaque__numeral {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.0625rem;
+  letter-spacing: 0.14em;
+  color: var(--bronze);
+}
+
+.plaque__glyph {
+  color: var(--bronze);
+}
+
+.plaque__name {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 1.1875rem;
+  line-height: 1.35;
+}
+
+.plaque__short {
+  color: var(--slate);
+  font-size: 0.9375rem;
+  flex-grow: 1;
+}
+
+.plaque__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  color: var(--bronze);
+}
+
+.plaque__link .arrow {
+  transition: transform 0.2s var(--ease-out);
+}
+
+.plaque:hover .plaque__link .arrow {
+  transform: translateX(4px);
+}
+
+/* ---------- framed exhibits (photographs) ---------- */
+
+.exhibit {
+  margin: 0;
+}
+
+.exhibit__frame {
+  position: relative;
+  border: 1px solid var(--bronze);
+  padding: 10px;
+  background: var(--limestone);
+}
+
+.exhibit__frame::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--hairline);
+  pointer-events: none;
+}
+
+.exhibit__media {
+  position: relative;
+  overflow: hidden;
+  background: var(--stone-inset);
+}
+
+/* photographs display exactly as supplied — no color treatment */
+.exhibit__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.exhibit__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  background: var(--stone-inset);
+  color: var(--slate);
+  padding: 24px;
+}
+
+.exhibit__placeholder-glyph {
+  color: var(--bronze);
+}
+
+.exhibit__placeholder-title {
+  font-family: var(--font-display), Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.9375rem;
+  color: var(--ink);
+}
+
+.exhibit__placeholder-hint {
+  font-size: 0.8125rem;
+  max-width: 40ch;
+}
+
+.exhibit__placeholder-hint code {
+  font-family: inherit;
+  color: var(--bronze);
+}
+
+.exhibit__caption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.exhibit__caption::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--bronze);
+  flex: none;
+}
+
+.exhibit--ratio-wide .exhibit__media {
+  aspect-ratio: 21 / 9;
+}
+
+.exhibit--ratio-standard .exhibit__media {
+  aspect-ratio: 3 / 2;
+}
+
+/* ---------- the Market Map: engraved atlas plate ---------- */
+
+.exhibit--map .exhibit__media {
+  background: var(--limestone);
+}
+
+.market-map {
+  position: relative;
+  color: var(--ink);
+}
+
+.market-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.market-map__graticule {
+  color: var(--hairline);
+}
+
+.market-map__rings {
+  opacity: 0.55;
+}
+
+.market-map__arcs {
+  color: var(--bronze);
+}
+
+.market-map__furniture {
+  color: var(--slate);
+  opacity: 0.8;
+}
+
+.market-map .map-fade {
+  opacity: 0;
+  animation: map-fade 0.8s var(--ease-out) forwards;
+  animation-delay: var(--fade-delay, 0ms);
+}
+
+.market-map .map-ripple {
+  opacity: 0;
+  stroke-dasharray: 2 6;
+  stroke-linecap: round;
+  animation: map-ripple 7s linear infinite;
+}
+
+@keyframes map-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes map-ripple {
+  0% {
+    r: 20;
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.55;
+  }
+  100% {
+    r: 210;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .market-map .map-fade {
+    animation: none;
+    opacity: 1;
+  }
+
+  .market-map .map-ripple {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+.market-map__labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.market-map__label {
+  position: absolute;
+  transform: translate(-50%, 10px);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate);
+  white-space: nowrap;
+}
+
+.market-map__label--above {
+  transform: translate(-50%, -24px);
+}
+
+.market-map__label--start {
+  transform: translate(0, 10px);
+}
+
+.market-map__label--end {
+  transform: translate(-100%, 10px);
+}
+
+.market-map__label--belgrade {
+  color: var(--bronze);
+  font-size: 0.75rem;
+  transform: translate(-50%, 16px);
+  background: var(--limestone);
+  padding: 0 6px;
+}
+
+@media (max-width: 640px) {
+  .market-map__label {
+    font-size: 0.5625rem;
+    letter-spacing: 0.06em;
+  }
+
+  .market-map__label--belgrade {
+    font-size: 0.6875rem;
+  }
+}
+
+/* ---------- the Rotunda: plates change at museum pace ---------- */
+
+.rotunda__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s var(--ease-out);
+}
+
+.rotunda__slide.is-active {
+  opacity: 1;
+}
+
+.rotunda__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* a single plate drifts gently instead of dissolving */
+@media (prefers-reduced-motion: no-preference) {
+  .rotunda__slide--drift img {
+    animation: rotunda-drift 36s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes rotunda-drift {
+  from {
+    transform: scale(1) translateX(0);
+  }
+  to {
+    transform: scale(1.07) translateX(-1.6%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotunda__slide {
+    transition: none;
+  }
+}
+
+.rotunda__markers {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding-right: 4px;
+  margin-left: auto;
+}
+
+.rotunda__marker {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  background: var(--limestone);
+  border: 1px solid var(--bronze);
+  transform: rotate(45deg);
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease-out);
+}
+
+.rotunda__marker:hover {
+  background: var(--brass);
+}
+
+.rotunda__marker.is-active {
+  background: var(--bronze);
+}
+
+/* ---------- about: medallions & team ---------- */
+
+.about__para {
+  color: var(--slate);
+  max-width: 62ch;
+  margin-top: clamp(16px, 2vw, 22px);
+}
+
+.about-grid {
+  display: grid;
+  /* The firm's account now runs to four paragraphs: it takes the wide
+     column so the measure stays readable; the pillars read fine narrow. */
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(40px, 6vw, 88px);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.medallion-list {
+  display: grid;
+  gap: clamp(28px, 4vw, 44px);
+}
+
+/* Column heading over the pillars. The carved `title` step: the wider
+   headline steps wrap in this column, and the hairline beneath carries
+   the hierarchy instead of size. */
+.medallion-list__heading {
+  font-size: clamp(1.375rem, 2.6vw, 1.875rem);
+  padding-bottom: clamp(12px, 1.6vw, 18px);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.medallion {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.medallion__ring {
+  color: var(--bronze);
+}
+
+.medallion__title {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 1.0625rem;
+  margin-bottom: 8px;
+}
+
+.medallion__body {
+  color: var(--slate);
+  font-size: 0.9375rem;
+}
+
+.team {
+  margin-top: clamp(40px, 6vw, 64px);
+  border-top: 1px solid var(--hairline);
+  padding-top: clamp(28px, 4vw, 40px);
+}
+
+.team__heading {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 24px;
+}
+
+.team__row {
+  display: flex;
+  gap: clamp(32px, 6vw, 72px);
+  flex-wrap: wrap;
+}
+
+.team__member-name {
+  font-family: var(--font-display), Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 1.125rem;
+  margin-bottom: 4px;
+}
+
+.team__member-role {
+  color: var(--slate);
+  font-size: 0.875rem;
+}
+
+.about-photo {
+  margin-top: clamp(32px, 5vw, 48px);
+  max-width: 480px;
+}
+
+/* ---------- contact protocol ---------- */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(40px, 6vw, 88px);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Honeypot: taken out of the visual and reading order without
+   display:none, which some bots detect and skip. */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.protocol {
+  position: relative;
+  background: var(--limestone);
+  border: 1px solid var(--bronze);
+  padding: clamp(28px, 4vw, 48px);
+}
+
+.protocol::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--hairline);
+  pointer-events: none;
+}
+
+.protocol form {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 22px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field__label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.field input,
+.field select,
+.field textarea {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--stone);
+  border: 1px solid var(--hairline);
+  border-radius: 0;
+  padding: 13px 16px;
+  width: 100%;
+  transition: border-color 0.2s var(--ease-out);
+}
+
+.field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: var(--bronze);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid var(--bronze);
+  outline-offset: 0;
+  border-color: var(--bronze);
+}
+
+.field input[aria-invalid='true'],
+.field textarea[aria-invalid='true'] {
+  border-color: #8c2f2f;
+}
+
+.field__error {
+  font-size: 0.8125rem;
+  color: #8c2f2f;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+@media (max-width: 640px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-status {
+  border: 1px solid var(--bronze);
+  background: var(--stone);
+  padding: 20px 24px;
+  font-size: 0.9375rem;
+}
+
+.form-status--error {
+  border-color: #8c2f2f;
+  color: #8c2f2f;
+}
+
+.form-status__title {
+  font-family: var(--font-display), Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+/* ---------- contact signature: the pen that signs ---------- */
+
+.contact-sign {
+  margin-top: clamp(36px, 5vw, 56px);
+  max-width: 380px;
+  color: var(--ink);
+}
+
+.contact-sign svg {
+  width: 100%;
+  height: auto;
+}
+
+.contact-sign .sign-pen {
+  opacity: 0;
+}
+
+.contact-sign .sign-pen polygon,
+.contact-sign .sign-pen line,
+.contact-sign .sign-pen circle {
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  animation: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .contact-sign .sign-path {
+    stroke-dasharray: var(--draw-len, 1);
+    stroke-dashoffset: var(--draw-len, 1);
+    animation: sign-write-cycle 6.5s linear 0.2s infinite;
+  }
+
+  /* keep this path identical to SIGN_PATH in components/engravings.tsx */
+  @supports (offset-path: path('M 0 0 L 1 1')) {
+    .contact-sign .sign-pen {
+      transform-box: fill-box;
+      transform-origin: center;
+      offset-path: path(
+        'M 24 104 C 40 60 70 46 82 72 C 92 94 70 112 60 98 C 52 86 74 66 102 70 C 130 74 146 94 170 88 C 192 82 202 64 191 58 C 182 53 172 66 188 76 C 204 86 240 74 266 78 C 290 82 306 92 331 86 C 339 84 343 88 340 93 C 324 108 196 120 104 112'
+      );
+      offset-rotate: 0deg;
+      animation: sign-pen-cycle 6.5s linear 0.2s infinite;
+    }
+  }
+}
+
+/* one cycle: write (0–42%), rest, pen lifts, ink fades, quiet, repeat */
+@keyframes sign-write-cycle {
+  0% {
+    stroke-dashoffset: var(--draw-len, 1);
+    opacity: 1;
+  }
+  42% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  58% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  68% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  99% {
+    stroke-dashoffset: var(--draw-len, 1);
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: var(--draw-len, 1);
+    opacity: 0;
+  }
+}
+
+@keyframes sign-pen-cycle {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  4% {
+    opacity: 1;
+  }
+  42% {
+    offset-distance: 100%;
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  52% {
+    offset-distance: 100%;
+    opacity: 0;
+    transform: translate(8px, -16px);
+  }
+  53% {
+    offset-distance: 0%;
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  100% {
+    offset-distance: 0%;
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+
+/* ---------- service pages ---------- */
+
+.service-hero {
+  padding-top: clamp(56px, 8vw, 96px);
+  padding-bottom: clamp(40px, 6vw, 72px);
+}
+
+.service-hero__crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--slate);
+  margin-bottom: 40px;
+  transition: color 0.2s var(--ease-out);
+}
+
+.service-hero__crumb:hover {
+  color: var(--bronze);
+}
+
+/* Header spread: inscription left, opening statement right. The two
+   fields meet at the foot so the lede sits on the title's baseline
+   course rather than floating at the top of an empty column. */
+.service-hero__spread {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: clamp(40px, 5vw, 72px);
+  align-items: start;
+}
+
+/* Drop the statement to the inscription's own first line, clearing the
+   kicker course above it, so the two fields open together. */
+.service-hero__intro {
+  padding-top: 46px;
+}
+
+@media (max-width: 900px) {
+  .service-hero__intro {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .service-hero__spread {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+}
+
+.service-hero .kicker {
+  margin-bottom: 24px;
+}
+
+.service-hero__title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  margin-bottom: 0;
+}
+
+.service-hero__intro {
+  font-size: 1.125rem;
+  color: var(--slate);
+  max-width: 52ch;
+}
+
+/* The brief: the client's own paragraphs in the wide field, the engraving
+   plate holding the narrow one — one course, both columns carrying load. */
+.service-brief {
+  padding-top: clamp(48px, 6vw, 84px);
+}
+
+.brief {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(40px, 6vw, 88px);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .brief {
+    grid-template-columns: 1fr;
+    gap: clamp(32px, 5vw, 48px);
+  }
+}
+
+/* No prose to carry: the plate takes the full course instead of leaving
+   a vacant field beside it. */
+.brief--plate-only {
+  grid-template-columns: 1fr;
+}
+
+.brief-prose {
+  display: grid;
+  gap: clamp(20px, 2.4vw, 28px);
+}
+
+.brief-prose__para {
+  color: var(--slate);
+}
+
+/* User-supplied engraving plate: hairline frame, image shown as delivered.
+   Centred and given width — it closes the brief. */
+.brief-plate {
+  border: 1px solid var(--hairline);
+  background: var(--limestone);
+  max-width: 720px;
+  margin: clamp(56px, 7vw, 104px) auto 0;
+}
+
+.brief-plate img {
+  width: 100%;
+  height: auto;
+}
+
+/* The photograph hangs beside the prose, at the scale of a hung exhibit
+   rather than a plate. */
+.brief-exhibit {
+  max-width: 420px;
+}
+
+@media (max-width: 900px) {
+  .brief-exhibit {
+    max-width: none;
+  }
+}
+
+.service-cta {
+  text-align: center;
+}
+
+.service-cta__title {
+  font-size: clamp(1.375rem, 2.6vw, 1.875rem);
+  margin-bottom: 14px;
+}
+
+.service-cta__body {
+  color: var(--slate);
+  max-width: 48ch;
+  margin-inline: auto;
+  margin-bottom: 36px;
+}
+
+/* ---------- footer plinth ---------- */
+
+.site-footer {
+  background: var(--plinth);
+  color: var(--limestone);
+  margin-top: var(--section-y);
+}
+
+/* A stone band already closes the storey — the plinth seats directly on
+   it instead of leaving a strip of limestone between the two. Older
+   engines without :has simply keep the standard course. */
+main:has(> .section--stone:last-child) + .site-footer {
+  margin-top: 0;
+}
+
+.site-footer__inner {
+  padding-block: clamp(48px, 7vw, 80px) 0;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 3fr);
+  gap: clamp(32px, 5vw, 64px);
+  padding-bottom: clamp(40px, 6vw, 64px);
+}
+
+@media (max-width: 860px) {
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.site-footer__mark {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.75rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 8px;
+}
+
+.site-footer__mark span {
+  color: var(--brass);
+}
+
+.site-footer__name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.site-footer__tagline {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  max-width: 30ch;
+  line-height: 1.7;
+}
+
+.site-footer__heading {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 18px;
+}
+
+.site-footer__links {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.site-footer__links a {
+  color: #c9cedd;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  transition: color 0.2s var(--ease-out);
+}
+
+.site-footer__links a:hover {
+  color: var(--limestone);
+}
+
+.site-footer__bottom {
+  border-top: 1px solid rgba(169, 139, 79, 0.35);
+  padding-block: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 0.8125rem;
+  color: #aeb4c6;
+}
+
+/* ---------- the single gesture: engraved lines draw once ---------- */
+
+/* Armed (JS present, motion allowed): strokes wait at full offset. Without
+   JS or under reduced motion the drawing is simply never armed, so the
+   server markup stands complete. */
+@media (prefers-reduced-motion: no-preference) {
+  .engrave--armed path,
+  .engrave--armed line,
+  .engrave--armed circle,
+  .engrave--armed rect,
+  .engrave--armed polyline,
+  .engrave--armed polygon {
+    stroke-dasharray: var(--draw-len, 1);
+    stroke-dashoffset: var(--draw-len, 1);
+  }
+
+  /* Released on entry: the stroke runs to completion and stays engraved.
+     Never paused mid-gesture — leaving the viewport re-arms from zero. */
+  .engrave--armed.engrave--drawn path,
+  .engrave--armed.engrave--drawn line,
+  .engrave--armed.engrave--drawn circle,
+  .engrave--armed.engrave--drawn rect,
+  .engrave--armed.engrave--drawn polyline,
+  .engrave--armed.engrave--drawn polygon {
+    animation: engrave-draw 1.6s var(--ease-out) forwards;
+    animation-delay: calc(var(--draw-delay, 0) * 1ms + var(--draw-stagger, 0) * 1ms);
+  }
+
+  /* The signing pen and the atlas plate own their own cycles: the
+     one-shot gesture must not claim their strokes. */
+  .engrave--armed .sign-pen polygon,
+  .engrave--armed .sign-pen line,
+  .engrave--armed .sign-pen circle,
+  .engrave--armed .map-fade {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .engrave--armed .sign-path,
+  .engrave--armed .map-ripple {
+    animation: none;
+  }
+
+  .engrave--armed.engrave--drawn .sign-pen polygon,
+  .engrave--armed.engrave--drawn .sign-pen line,
+  .engrave--armed.engrave--drawn .sign-pen circle {
+    animation: none;
+  }
+
+  .engrave--armed.engrave--drawn .sign-path {
+    stroke-dasharray: var(--draw-len, 1);
+    animation: sign-write-cycle 6.5s linear 0.2s infinite;
+  }
+
+  .engrave--armed.engrave--drawn .map-fade {
+    animation: map-fade 0.8s var(--ease-out) forwards;
+    animation-delay: var(--fade-delay, 0ms);
+  }
+
+  .engrave--armed.engrave--drawn .map-ripple {
+    stroke-dasharray: 2 6;
+    animation: map-ripple 7s linear infinite;
+  }
+}
+
+@keyframes engrave-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
