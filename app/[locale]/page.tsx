@@ -134,17 +134,6 @@ export default async function HomePage({
                   {paragraph}
                 </p>
               ))}
-              <div className="team">
-                <p className="team__heading">{dict.about.teamHeading}</p>
-                <div className="team__row">
-                  {dict.about.team.map((member) => (
-                    <div key={member.name}>
-                      <p className="team__member-name">{member.name}</p>
-                      <p className="team__member-role">{member.role}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
               <div className="about-photo">
                 <FramedPhoto
                   photo={dict.about.teamPhoto}
